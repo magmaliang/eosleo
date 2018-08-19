@@ -1,471 +1,2382 @@
 <!DOCTYPE html>
+<!-- saved from url=(0029)https://eosbutton.io/ebt-game -->
 <html lang="en" slick-uniqueid="3">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="google-site-verification" content="osq6_GW3w9iQlVv-yqUpYVaRBTA8jRI6-cRSxIcosdc">
+  <link rel="stylesheet" href="./EOS Button_files/css">
+  <link rel="stylesheet" href="./EOS Button_files/icon">
+  <link rel="manifest" href="https://eosbutton.io/manifest.json">
+  <link rel="shortcut icon" href="https://eosbutton.io/favicon.png">
+  <title>EOS Button</title>
+  <script async="" src="./EOS Button_files/analytics.js"></script>
+  <script type="text/javascript">
+    ! function (i) {
+      if (i.search) {
+        var l = {};
+        i.search.slice(1).split("&").forEach(function (i) {
+          var a = i.split("=");
+          l[a[0]] = a.slice(1).join("=").replace(/~and~/g, "&")
+        }), void 0 !== l.p && window.history.replaceState(null, null, i.pathname.slice(0, -1) + (l.p || "") + (l.q ?
+          "?" + l.q : "") + i.hash)
+      }
+    }(window.location)
+  </script>
+  <link href="./src/css/main.css" rel="stylesheet">
+  <style type="text/css">
+    .butter-toast-tray .action-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: transform .4s, opacity .3s;
+    }
 
-  <title>神影游戏 - EOS生态游戏投资中心</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0">
-  <meta name="keywords" content="EOS 神影游戏 投资游戏 资金游戏 EOS生态 DAPP">
-  <meta name="description" content="EOS 神影游戏 - EOS智能合约投资游戏">
-  <link rel="shortcut icon" href="http://eosleo.io/assets/favourite.png">
-  <link rel="stylesheet" href="./src/css/bootstrap.min.css" type="text/css" media="all">
-  <link rel="stylesheet" href="./src/css/eos.css" type="text/css" media="all">
+    .butter-toast-tray .action-wrapper.shown {
+      opacity: 1;
+    }
+
+    .butter-toast-tray .action-wrapper.clickable {
+      cursor: pointer;
+    }
+  </style>
+  <style type="text/css">
+    .butter-toast-tray {
+      position: fixed;
+      z-index: 999999;
+      height: 0;
+    }
+
+    .butter-toast-tray[class*="-left"] {
+      left: 5px;
+    }
+
+    .butter-toast-tray[class*="-right"] {
+      right: 5px;
+    }
+
+    .butter-toast-tray[class*="-right"] .wrapper {
+      text-align: right;
+    }
+
+    .butter-toast-tray[class*="-center"] {
+      left: 50%;
+    }
+
+    .butter-toast-tray[class*="-center"] .wrapper {
+      text-align: center;
+    }
+
+    .butter-toast-tray[class*="top-"] {
+      top: 5px;
+    }
+
+    .butter-toast-tray[class*="bottom-"] {
+      bottom: 5px;
+    }
+
+    .butter-toast-tray .wrapper {
+      position: relative;
+      padding: 10px;
+    }
+
+    .butter-toast-tray .wrapper .toast {
+      text-align: left;
+    }
+  </style>
+  <style type="text/css">
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+  </style>
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+  </style>
+  <style type="text/css">
+    @keyframes hide {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0.7);
+      }
+    }
+
+    @keyframes showDown {
+      0% {
+        transform: translateY(25px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes showUp {
+      0% {
+        transform: translateY(-25px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .butter-toast-tray[class*="top-"] .action-wrapper.shown .toast [class*="cinnamon-sugar-"] {
+      animation: showUp .4s;
+    }
+
+    .butter-toast-tray[class*="bottom-"] .action-wrapper.shown .toast [class*="cinnamon-sugar-"] {
+      animation: showDown .4s;
+    }
+
+    .action-wrapper:not(.shown) .toast [class*="cinnamon-sugar-"] {
+      z-index: 0;
+      animation: hide 1s;
+    }
+
+    .toast [class*="cinnamon-sugar-"] {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toast [class*="cinnamon-sugar-"].no-icon {
+      padding-left: 10px;
+    }
+
+    .toast [class*="cinnamon-sugar-"].no-icon aside {
+      display: none;
+    }
+
+    .toast [class*="cinnamon-sugar-"] aside {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toast [class*="cinnamon-sugar-"] aside:before {
+      font-family: 'FontAwesome';
+      font-size: 22px;
+    }
+
+    @keyframes showIcon {
+      0% {
+        transform: scale(0.6);
+      }
+      60% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .action-wrapper.shown .toast .cinnamon-sugar-Crisp aside {
+      animation: showIcon .5s;
+    }
+
+    .cinnamon-sugar-Crisp {
+      font-size: 11px;
+      line-height: 14px;
+      position: relative;
+      background-color: #ffffff;
+      min-height: 50px;
+      width: 400px;
+      padding: 10px 45px 10px 60px;
+      box-sizing: border-box;
+      box-shadow: 0 3px 15px #eeeeee;
+      border-radius: 5px;
+      transition: box-shadow .3s;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .cinnamon-sugar-Crisp:hover {
+      box-shadow: 0 3px 15px #e0e0e0;
+    }
+
+    .cinnamon-sugar-Crisp .title {
+      padding-bottom: 5px;
+      color: #616161;
+      font-size: 15px;
+    }
+
+    .cinnamon-sugar-Crisp .message {
+      color: #9e9e9e;
+    }
+
+    .cinnamon-sugar-Crisp a.btn-dismiss {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 22px;
+      color: #bdbdbd;
+      transition: background-color .4s;
+    }
+
+    .cinnamon-sugar-Crisp a.btn-dismiss:hover {
+      background-color: #fafafa;
+    }
+
+    .cinnamon-sugar-Crisp a.btn-dismiss:active {
+      background-color: #f5f5f5;
+    }
+
+    .cinnamon-sugar-Crisp.success {
+      color: #66bb6a;
+    }
+
+    .cinnamon-sugar-Crisp.error {
+      color: #ef5350;
+    }
+
+    .cinnamon-sugar-Crisp.info {
+      color: #42a5f5;
+    }
+
+    .cinnamon-sugar-Crisp.danger {
+      color: #ffa726;
+    }
+
+    .cinnamon-sugar-Crisp.golden {
+      color: #ffca28;
+    }
+
+    .cinnamon-sugar-Crisp.dark {
+      color: #757575;
+    }
+
+    .cinnamon-sugar-Crisp.default {
+      color: #bdbdbd;
+    }
+  </style>
+  <style type="text/css">
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+  </style>
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+  </style>
+  <style type="text/css">
+    @keyframes hide {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0.7);
+      }
+    }
+
+    @keyframes showDown {
+      0% {
+        transform: translateY(25px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes showUp {
+      0% {
+        transform: translateY(-25px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .butter-toast-tray[class*="top-"] .action-wrapper.shown .toast [class*="cinnamon-sugar-"] {
+      animation: showUp .4s;
+    }
+
+    .butter-toast-tray[class*="bottom-"] .action-wrapper.shown .toast [class*="cinnamon-sugar-"] {
+      animation: showDown .4s;
+    }
+
+    .action-wrapper:not(.shown) .toast [class*="cinnamon-sugar-"] {
+      z-index: 0;
+      animation: hide 1s;
+    }
+
+    .toast [class*="cinnamon-sugar-"] {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toast [class*="cinnamon-sugar-"].no-icon {
+      padding-left: 10px;
+    }
+
+    .toast [class*="cinnamon-sugar-"].no-icon aside {
+      display: none;
+    }
+
+    .toast [class*="cinnamon-sugar-"] aside {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toast [class*="cinnamon-sugar-"] aside:before {
+      font-family: 'FontAwesome';
+      font-size: 22px;
+    }
+
+    @keyframes showIconTop {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes showIconBottom {
+      0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .butter-toast-tray[class*="top-"] .action-wrapper.shown .toast .cinnamon-sugar-Crunch aside:before {
+      animation: showIconTop .5s;
+    }
+
+    .butter-toast-tray[class*="bottom-"] .action-wrapper.shown .toast .cinnamon-sugar-Crunch aside:before {
+      animation: showIconBottom .5s;
+    }
+
+    .cinnamon-sugar-Crunch {
+      color: #ffffff;
+      font-size: 11px;
+      line-height: 14px;
+      position: relative;
+      min-height: 50px;
+      width: 300px;
+      padding: 10px 25px 10px 60px;
+      box-sizing: border-box;
+      box-shadow: 0 3px 5px #e0e0e0;
+      border-radius: 2px;
+      transition: box-shadow .3s;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .cinnamon-sugar-Crunch:hover {
+      box-shadow: 0 3px 5px #bdbdbd;
+    }
+
+    .cinnamon-sugar-Crunch .title {
+      padding-bottom: 5px;
+      font-size: 15px;
+    }
+
+    .cinnamon-sugar-Crunch a.btn-dismiss {
+      color: #ffffff;
+      position: absolute;
+      right: 0;
+      top: 0;
+      text-decoration: none;
+      text-align: center;
+      padding: 8px;
+      box-sizing: border-box;
+      font-size: 16px;
+      transition: opacity .2s;
+    }
+
+    .cinnamon-sugar-Crunch a.btn-dismiss:hover {
+      opacity: .8;
+    }
+
+    .cinnamon-sugar-Crunch a.btn-dismiss:active {
+      opacity: .5;
+    }
+
+    .cinnamon-sugar-Crunch.grey {
+      background-color: #424242;
+    }
+
+    .cinnamon-sugar-Crunch.red {
+      background-color: #d50000;
+    }
+
+    .cinnamon-sugar-Crunch.blue {
+      background-color: #0d47a1;
+    }
+
+    .cinnamon-sugar-Crunch.purple {
+      background-color: #311b92;
+    }
+
+    .cinnamon-sugar-Crunch.orange {
+      background-color: #e65100;
+    }
+
+    .cinnamon-sugar-Crunch.green {
+      background-color: #2e7d32;
+    }
+  </style>
+  <style type="text/css">
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+  </style>
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+  </style>
+  <style type="text/css">
+    @keyframes hide {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0.7);
+      }
+    }
+
+    @keyframes showDown {
+      0% {
+        transform: translateY(25px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes showUp {
+      0% {
+        transform: translateY(-25px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .butter-toast-tray[class*="top-"] .action-wrapper.shown .toast [class*="cinnamon-sugar-"] {
+      animation: showUp .4s;
+    }
+
+    .butter-toast-tray[class*="bottom-"] .action-wrapper.shown .toast [class*="cinnamon-sugar-"] {
+      animation: showDown .4s;
+    }
+
+    .action-wrapper:not(.shown) .toast [class*="cinnamon-sugar-"] {
+      z-index: 0;
+      animation: hide 1s;
+    }
+
+    .toast [class*="cinnamon-sugar-"] {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toast [class*="cinnamon-sugar-"].no-icon {
+      padding-left: 10px;
+    }
+
+    .toast [class*="cinnamon-sugar-"].no-icon aside {
+      display: none;
+    }
+
+    .toast [class*="cinnamon-sugar-"] aside {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toast [class*="cinnamon-sugar-"] aside:before {
+      font-family: 'FontAwesome';
+      font-size: 22px;
+    }
+
+    .action-wrapper.cs-Slim {
+      width: 200px;
+    }
+
+    .action-wrapper.cs-Slim .toast .cinnamon-sugar-Slim {
+      display: inline-block;
+      font-size: 12px;
+      text-align: center;
+      padding: 5px 10px;
+      max-width: 350px;
+      overflow: hidden;
+      border-radius: 5px;
+      box-sizing: border-box;
+      box-shadow: 0 3px 5px #bdbdbd;
+      transition: box-shadow .3s;
+    }
+
+    .action-wrapper.cs-Slim .toast .cinnamon-sugar-Slim.dark {
+      background-color: #424242;
+      color: #f5f5f5;
+    }
+
+    .action-wrapper.cs-Slim .toast .cinnamon-sugar-Slim.lite {
+      background-color: #fafafa;
+      color: #424242;
+    }
+
+    .action-wrapper.cs-Slim .toast .cinnamon-sugar-Slim:hover {
+      box-shadow: 0 3px 5px #9e9e9e;
+    }
+  </style>
+  <style type="text/css">
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+  </style>
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+  </style>
+  <style type="text/css">
+    @keyframes hide {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0.7);
+      }
+    }
+
+    @keyframes showDown {
+      0% {
+        transform: translateY(25px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes showUp {
+      0% {
+        transform: translateY(-25px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .butter-toast-tray[class*="top-"] .action-wrapper.shown .toast [class*="cinnamon-sugar-"] {
+      animation: showUp .4s;
+    }
+
+    .butter-toast-tray[class*="bottom-"] .action-wrapper.shown .toast [class*="cinnamon-sugar-"] {
+      animation: showDown .4s;
+    }
+
+    .action-wrapper:not(.shown) .toast [class*="cinnamon-sugar-"] {
+      z-index: 0;
+      animation: hide 1s;
+    }
+
+    .toast [class*="cinnamon-sugar-"] {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toast [class*="cinnamon-sugar-"].no-icon {
+      padding-left: 10px;
+    }
+
+    .toast [class*="cinnamon-sugar-"].no-icon aside {
+      display: none;
+    }
+
+    .toast [class*="cinnamon-sugar-"] aside {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toast [class*="cinnamon-sugar-"] aside:before {
+      font-family: 'FontAwesome';
+      font-size: 22px;
+    }
+
+    @keyframes showIconTop {
+      0% {
+        transform: translateY(-200%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes showIconBottom {
+      0% {
+        transform: translateY(200%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .butter-toast-tray[class*="top-"] .action-wrapper.shown .toast .cinnamon-sugar-Fresh aside:before {
+      animation: showIconTop .5s;
+    }
+
+    .butter-toast-tray[class*="bottom-"] .action-wrapper.shown .toast .cinnamon-sugar-Fresh aside:before {
+      animation: showIconBottom .5s;
+    }
+
+    .toast .cinnamon-sugar-Fresh {
+      font-size: 11px;
+      line-height: 14px;
+      position: relative;
+      min-height: 50px;
+      width: 250px;
+      padding: 10px 25px 10px 70px;
+      box-sizing: border-box;
+      box-shadow: 0 3px 5px #e0e0e0;
+      border-radius: 4px;
+      transition: box-shadow .3s;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .toast .cinnamon-sugar-Fresh figure {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      margin: 0;
+      background-size: cover;
+      background-position: 50% 50%;
+    }
+
+    .toast .cinnamon-sugar-Fresh aside {
+      top: 30px;
+      right: 0;
+      bottom: 5px;
+      width: 25px;
+      left: auto;
+      justify-content: flex-end;
+    }
+
+    .toast .cinnamon-sugar-Fresh aside:before {
+      font-size: 15px;
+    }
+
+    .toast .cinnamon-sugar-Fresh:hover {
+      box-shadow: 0 3px 5px #bdbdbd;
+    }
+
+    .toast .cinnamon-sugar-Fresh .title {
+      padding-bottom: 5px;
+      font-size: 15px;
+    }
+
+    .toast .cinnamon-sugar-Fresh a.btn-dismiss {
+      position: absolute;
+      right: 0;
+      top: 0;
+      text-decoration: none;
+      text-align: center;
+      padding: 8px;
+      box-sizing: border-box;
+      font-size: 16px;
+      transition: opacity .2s;
+    }
+
+    .toast .cinnamon-sugar-Fresh a.btn-dismiss:hover {
+      opacity: .8;
+    }
+
+    .toast .cinnamon-sugar-Fresh a.btn-dismiss:active {
+      opacity: .5;
+    }
+
+    .toast .cinnamon-sugar-Fresh.dark {
+      background-color: #212121;
+      color: #ffffff;
+    }
+
+    .toast .cinnamon-sugar-Fresh.dark a.btn-dismiss {
+      color: #ffffff;
+    }
+
+    .toast .cinnamon-sugar-Fresh.lite {
+      background-color: #f5f5f5;
+      color: #424242;
+    }
+
+    .toast .cinnamon-sugar-Fresh.lite a.btn-dismiss {
+      color: #424242;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiGrid">
+    .jss123 {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+
+    .jss124 {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .jss125 {
+      min-width: 0;
+    }
+
+    .jss126 {
+      flex-direction: column;
+    }
+
+    .jss127 {
+      flex-direction: column-reverse;
+    }
+
+    .jss128 {
+      flex-direction: row-reverse;
+    }
+
+    .jss129 {
+      flex-wrap: nowrap;
+    }
+
+    .jss130 {
+      flex-wrap: wrap-reverse;
+    }
+
+    .jss131 {
+      align-items: center;
+    }
+
+    .jss132 {
+      align-items: flex-start;
+    }
+
+    .jss133 {
+      align-items: flex-end;
+    }
+
+    .jss134 {
+      align-items: baseline;
+    }
+
+    .jss135 {
+      align-content: center;
+    }
+
+    .jss136 {
+      align-content: flex-start;
+    }
+
+    .jss137 {
+      align-content: flex-end;
+    }
+
+    .jss138 {
+      align-content: space-between;
+    }
+
+    .jss139 {
+      align-content: space-around;
+    }
+
+    .jss140 {
+      justify-content: center;
+    }
+
+    .jss141 {
+      justify-content: flex-end;
+    }
+
+    .jss142 {
+      justify-content: space-between;
+    }
+
+    .jss143 {
+      justify-content: space-around;
+    }
+
+    .jss144 {
+      width: calc(100% + 8px);
+      margin: -4px;
+    }
+
+    .jss144>.jss124 {
+      padding: 4px;
+    }
+
+    .jss145 {
+      width: calc(100% + 16px);
+      margin: -8px;
+    }
+
+    .jss145>.jss124 {
+      padding: 8px;
+    }
+
+    .jss146 {
+      width: calc(100% + 24px);
+      margin: -12px;
+    }
+
+    .jss146>.jss124 {
+      padding: 12px;
+    }
+
+    .jss147 {
+      width: calc(100% + 32px);
+      margin: -16px;
+    }
+
+    .jss147>.jss124 {
+      padding: 16px;
+    }
+
+    .jss148 {
+      width: calc(100% + 40px);
+      margin: -20px;
+    }
+
+    .jss148>.jss124 {
+      padding: 20px;
+    }
+
+    .jss149 {
+      flex-grow: 0;
+      max-width: none;
+      flex-basis: auto;
+    }
+
+    .jss150 {
+      flex-grow: 1;
+      max-width: 100%;
+      flex-basis: 0;
+    }
+
+    .jss151 {
+      flex-grow: 0;
+      max-width: 8.33333%;
+      flex-basis: 8.33333%;
+    }
+
+    .jss152 {
+      flex-grow: 0;
+      max-width: 16.66667%;
+      flex-basis: 16.66667%;
+    }
+
+    .jss153 {
+      flex-grow: 0;
+      max-width: 25%;
+      flex-basis: 25%;
+    }
+
+    .jss154 {
+      flex-grow: 0;
+      max-width: 33.33333%;
+      flex-basis: 33.33333%;
+    }
+
+    .jss155 {
+      flex-grow: 0;
+      max-width: 41.66667%;
+      flex-basis: 41.66667%;
+    }
+
+    .jss156 {
+      flex-grow: 0;
+      max-width: 50%;
+      flex-basis: 50%;
+    }
+
+    .jss157 {
+      flex-grow: 0;
+      max-width: 58.33333%;
+      flex-basis: 58.33333%;
+    }
+
+    .jss158 {
+      flex-grow: 0;
+      max-width: 66.66667%;
+      flex-basis: 66.66667%;
+    }
+
+    .jss159 {
+      flex-grow: 0;
+      max-width: 75%;
+      flex-basis: 75%;
+    }
+
+    .jss160 {
+      flex-grow: 0;
+      max-width: 83.33333%;
+      flex-basis: 83.33333%;
+    }
+
+    .jss161 {
+      flex-grow: 0;
+      max-width: 91.66667%;
+      flex-basis: 91.66667%;
+    }
+
+    .jss162 {
+      flex-grow: 0;
+      max-width: 100%;
+      flex-basis: 100%;
+    }
+
+    @media (min-width:600px) {
+      .jss163 {
+        flex-grow: 0;
+        max-width: none;
+        flex-basis: auto;
+      }
+      .jss164 {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+      .jss165 {
+        flex-grow: 0;
+        max-width: 8.33333%;
+        flex-basis: 8.33333%;
+      }
+      .jss166 {
+        flex-grow: 0;
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+      }
+      .jss167 {
+        flex-grow: 0;
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+      .jss168 {
+        flex-grow: 0;
+        max-width: 33.33333%;
+        flex-basis: 33.33333%;
+      }
+      .jss169 {
+        flex-grow: 0;
+        max-width: 41.66667%;
+        flex-basis: 41.66667%;
+      }
+      .jss170 {
+        flex-grow: 0;
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+      .jss171 {
+        flex-grow: 0;
+        max-width: 58.33333%;
+        flex-basis: 58.33333%;
+      }
+      .jss172 {
+        flex-grow: 0;
+        max-width: 66.66667%;
+        flex-basis: 66.66667%;
+      }
+      .jss173 {
+        flex-grow: 0;
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+      .jss174 {
+        flex-grow: 0;
+        max-width: 83.33333%;
+        flex-basis: 83.33333%;
+      }
+      .jss175 {
+        flex-grow: 0;
+        max-width: 91.66667%;
+        flex-basis: 91.66667%;
+      }
+      .jss176 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+    }
+
+    @media (min-width:960px) {
+      .jss177 {
+        flex-grow: 0;
+        max-width: none;
+        flex-basis: auto;
+      }
+      .jss178 {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+      .jss179 {
+        flex-grow: 0;
+        max-width: 8.33333%;
+        flex-basis: 8.33333%;
+      }
+      .jss180 {
+        flex-grow: 0;
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+      }
+      .jss181 {
+        flex-grow: 0;
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+      .jss182 {
+        flex-grow: 0;
+        max-width: 33.33333%;
+        flex-basis: 33.33333%;
+      }
+      .jss183 {
+        flex-grow: 0;
+        max-width: 41.66667%;
+        flex-basis: 41.66667%;
+      }
+      .jss184 {
+        flex-grow: 0;
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+      .jss185 {
+        flex-grow: 0;
+        max-width: 58.33333%;
+        flex-basis: 58.33333%;
+      }
+      .jss186 {
+        flex-grow: 0;
+        max-width: 66.66667%;
+        flex-basis: 66.66667%;
+      }
+      .jss187 {
+        flex-grow: 0;
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+      .jss188 {
+        flex-grow: 0;
+        max-width: 83.33333%;
+        flex-basis: 83.33333%;
+      }
+      .jss189 {
+        flex-grow: 0;
+        max-width: 91.66667%;
+        flex-basis: 91.66667%;
+      }
+      .jss190 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+    }
+
+    @media (min-width:1280px) {
+      .jss191 {
+        flex-grow: 0;
+        max-width: none;
+        flex-basis: auto;
+      }
+      .jss192 {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+      .jss193 {
+        flex-grow: 0;
+        max-width: 8.33333%;
+        flex-basis: 8.33333%;
+      }
+      .jss194 {
+        flex-grow: 0;
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+      }
+      .jss195 {
+        flex-grow: 0;
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+      .jss196 {
+        flex-grow: 0;
+        max-width: 33.33333%;
+        flex-basis: 33.33333%;
+      }
+      .jss197 {
+        flex-grow: 0;
+        max-width: 41.66667%;
+        flex-basis: 41.66667%;
+      }
+      .jss198 {
+        flex-grow: 0;
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+      .jss199 {
+        flex-grow: 0;
+        max-width: 58.33333%;
+        flex-basis: 58.33333%;
+      }
+      .jss200 {
+        flex-grow: 0;
+        max-width: 66.66667%;
+        flex-basis: 66.66667%;
+      }
+      .jss201 {
+        flex-grow: 0;
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+      .jss202 {
+        flex-grow: 0;
+        max-width: 83.33333%;
+        flex-basis: 83.33333%;
+      }
+      .jss203 {
+        flex-grow: 0;
+        max-width: 91.66667%;
+        flex-basis: 91.66667%;
+      }
+      .jss204 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+    }
+
+    @media (min-width:1920px) {
+      .jss205 {
+        flex-grow: 0;
+        max-width: none;
+        flex-basis: auto;
+      }
+      .jss206 {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+      .jss207 {
+        flex-grow: 0;
+        max-width: 8.33333%;
+        flex-basis: 8.33333%;
+      }
+      .jss208 {
+        flex-grow: 0;
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+      }
+      .jss209 {
+        flex-grow: 0;
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+      .jss210 {
+        flex-grow: 0;
+        max-width: 33.33333%;
+        flex-basis: 33.33333%;
+      }
+      .jss211 {
+        flex-grow: 0;
+        max-width: 41.66667%;
+        flex-basis: 41.66667%;
+      }
+      .jss212 {
+        flex-grow: 0;
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+      .jss213 {
+        flex-grow: 0;
+        max-width: 58.33333%;
+        flex-basis: 58.33333%;
+      }
+      .jss214 {
+        flex-grow: 0;
+        max-width: 66.66667%;
+        flex-basis: 66.66667%;
+      }
+      .jss215 {
+        flex-grow: 0;
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+      .jss216 {
+        flex-grow: 0;
+        max-width: 83.33333%;
+        flex-basis: 83.33333%;
+      }
+      .jss217 {
+        flex-grow: 0;
+        max-width: 91.66667%;
+        flex-basis: 91.66667%;
+      }
+      .jss218 {
+        flex-grow: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+    }
+  </style>
+  <style data-jss="" data-meta="MuiPaper">
+    .jss9 {
+      background-color: #fff;
+    }
+
+    .jss10 {
+      border-radius: 4px;
+    }
+
+    .jss11 {
+      box-shadow: none;
+    }
+
+    .jss12 {
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss13 {
+      box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss14 {
+      box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 3px -2px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss15 {
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss16 {
+      box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss17 {
+      box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss18 {
+      box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss19 {
+      box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss20 {
+      box-shadow: 0px 5px 6px -3px rgba(0, 0, 0, 0.2), 0px 9px 12px 1px rgba(0, 0, 0, 0.14), 0px 3px 16px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss21 {
+      box-shadow: 0px 6px 6px -3px rgba(0, 0, 0, 0.2), 0px 10px 14px 1px rgba(0, 0, 0, 0.14), 0px 4px 18px 3px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss22 {
+      box-shadow: 0px 6px 7px -4px rgba(0, 0, 0, 0.2), 0px 11px 15px 1px rgba(0, 0, 0, 0.14), 0px 4px 20px 3px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss23 {
+      box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss24 {
+      box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 13px 19px 2px rgba(0, 0, 0, 0.14), 0px 5px 24px 4px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss25 {
+      box-shadow: 0px 7px 9px -4px rgba(0, 0, 0, 0.2), 0px 14px 21px 2px rgba(0, 0, 0, 0.14), 0px 5px 26px 4px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss26 {
+      box-shadow: 0px 8px 9px -5px rgba(0, 0, 0, 0.2), 0px 15px 22px 2px rgba(0, 0, 0, 0.14), 0px 6px 28px 5px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss27 {
+      box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss28 {
+      box-shadow: 0px 8px 11px -5px rgba(0, 0, 0, 0.2), 0px 17px 26px 2px rgba(0, 0, 0, 0.14), 0px 6px 32px 5px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss29 {
+      box-shadow: 0px 9px 11px -5px rgba(0, 0, 0, 0.2), 0px 18px 28px 2px rgba(0, 0, 0, 0.14), 0px 7px 34px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss30 {
+      box-shadow: 0px 9px 12px -6px rgba(0, 0, 0, 0.2), 0px 19px 29px 2px rgba(0, 0, 0, 0.14), 0px 7px 36px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss31 {
+      box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2), 0px 20px 31px 3px rgba(0, 0, 0, 0.14), 0px 8px 38px 7px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss32 {
+      box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2), 0px 21px 33px 3px rgba(0, 0, 0, 0.14), 0px 8px 40px 7px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss33 {
+      box-shadow: 0px 10px 14px -6px rgba(0, 0, 0, 0.2), 0px 22px 35px 3px rgba(0, 0, 0, 0.14), 0px 8px 42px 7px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss34 {
+      box-shadow: 0px 11px 14px -7px rgba(0, 0, 0, 0.2), 0px 23px 36px 3px rgba(0, 0, 0, 0.14), 0px 9px 44px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss35 {
+      box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    }
+  </style>
+  <style data-jss="" data-meta="MuiTouchRipple">
+    .jss89 {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+      position: absolute;
+      overflow: hidden;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .jss90 {
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      opacity: 0;
+      position: absolute;
+    }
+
+    .jss91 {
+      opacity: 0.3;
+      transform: scale(1);
+      animation: mui-ripple-enter 550ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .jss92 {
+      animation-duration: 200ms;
+    }
+
+    .jss93 {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      display: block;
+      border-radius: 50%;
+      background-color: currentColor;
+    }
+
+    .jss94 {
+      opacity: 0;
+      animation: mui-ripple-exit 550ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .jss95 {
+      top: 0;
+      left: 0;
+      position: absolute;
+      animation: mui-ripple-pulsate 2500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms infinite;
+    }
+
+    @-webkit-keyframes mui-ripple-enter {
+      0% {
+        opacity: 0.1;
+        transform: scale(0);
+      }
+      100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+    }
+
+    @-webkit-keyframes mui-ripple-exit {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes mui-ripple-pulsate {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.92);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+  <style data-jss="" data-meta="MuiButtonBase">
+    .jss62 {
+      color: inherit;
+      cursor: pointer;
+      margin: 0;
+      border: 0;
+      display: inline-flex;
+      padding: 0;
+      outline: none;
+      position: relative;
+      user-select: none;
+      align-items: center;
+      border-radius: 0;
+      vertical-align: middle;
+      justify-content: center;
+      -moz-appearance: none;
+      text-decoration: none;
+      background-color: transparent;
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .jss62::-moz-focus-inner {
+      border-style: none;
+    }
+
+    .jss62.jss63 {
+      cursor: default;
+      pointer-events: none;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiButton">
+    .jss38 {
+      color: rgba(0, 0, 0, 0.87);
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      min-width: 88px;
+      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      min-height: 36px;
+      box-sizing: border-box;
+      line-height: 1.4em;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 500;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .jss38:hover {
+      text-decoration: none;
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .jss38.jss56 {
+      color: rgba(0, 0, 0, 0.26);
+    }
+
+    @media (hover: none) {
+      .jss38:hover {
+        background-color: transparent;
+      }
+    }
+
+    .jss38:hover.jss56 {
+      background-color: transparent;
+    }
+
+    .jss39 {
+      display: inherit;
+      align-items: inherit;
+      justify-content: inherit;
+    }
+
+    .jss41 {
+      color: #3f51b5;
+    }
+
+    .jss41:hover {
+      background-color: rgba(63, 81, 181, 0.08);
+    }
+
+    @media (hover: none) {
+      .jss41:hover {
+        background-color: transparent;
+      }
+    }
+
+    .jss42 {
+      color: #f50057;
+    }
+
+    .jss42:hover {
+      background-color: rgba(245, 0, 87, 0.08);
+    }
+
+    @media (hover: none) {
+      .jss42:hover {
+        background-color: transparent;
+      }
+    }
+
+    .jss46 {
+      border: 1px solid rgba(0, 0, 0, 0.23);
+    }
+
+    .jss47 {
+      color: rgba(0, 0, 0, 0.87);
+      box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+      background-color: #e0e0e0;
+    }
+
+    .jss47.jss55 {
+      box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss47:active {
+      box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss47.jss56 {
+      color: rgba(0, 0, 0, 0.26);
+      box-shadow: none;
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .jss47:hover {
+      background-color: #d5d5d5;
+    }
+
+    @media (hover: none) {
+      .jss47:hover {
+        background-color: #e0e0e0;
+      }
+    }
+
+    .jss47:hover.jss56 {
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .jss48 {
+      color: #fff;
+      background-color: #3f51b5;
+    }
+
+    .jss48:hover {
+      background-color: #303f9f;
+    }
+
+    @media (hover: none) {
+      .jss48:hover {
+        background-color: #3f51b5;
+      }
+    }
+
+    .jss49 {
+      color: #fff;
+      background-color: #f50057;
+    }
+
+    .jss49:hover {
+      background-color: #c51162;
+    }
+
+    @media (hover: none) {
+      .jss49:hover {
+        background-color: #f50057;
+      }
+    }
+
+    .jss53 {
+      width: 56px;
+      height: 56px;
+      padding: 0;
+      min-width: 0;
+      box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+      border-radius: 50%;
+    }
+
+    .jss53:active {
+      box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+    }
+
+    .jss54 {
+      width: initial;
+      height: 48px;
+      padding: 0 16px;
+      min-width: 48px;
+      border-radius: 24px;
+    }
+
+    .jss57 {
+      color: inherit;
+    }
+
+    .jss58 {
+      width: 40px;
+      height: 40px;
+    }
+
+    .jss59 {
+      padding: 7px 8px;
+      min-width: 64px;
+      font-size: 0.8125rem;
+      min-height: 32px;
+    }
+
+    .jss60 {
+      padding: 8px 24px;
+      min-width: 112px;
+      font-size: 0.9375rem;
+      min-height: 40px;
+    }
+
+    .jss61 {
+      width: 100%;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiAppBar">
+    .jss1 {
+      width: 100%;
+      display: flex;
+      z-index: 1100;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      flex-direction: column;
+    }
+
+    .jss2 {
+      top: 0;
+      left: auto;
+      right: 0;
+      position: fixed;
+    }
+
+    .jss3 {
+      top: 0;
+      left: auto;
+      right: 0;
+      position: absolute;
+    }
+
+    .jss4 {
+      top: 0;
+      left: auto;
+      right: 0;
+      position: sticky;
+    }
+
+    .jss5 {
+      position: static;
+    }
+
+    .jss6 {
+      color: rgba(0, 0, 0, 0.87);
+      background-color: #f5f5f5;
+    }
+
+    .jss7 {
+      color: #fff;
+      background-color: #3f51b5;
+    }
+
+    .jss8 {
+      color: #fff;
+      background-color: #f50057;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiToolbar">
+    .jss36 {
+      display: flex;
+      position: relative;
+      min-height: 56px;
+      align-items: center;
+    }
+
+    @media (min-width:0px) and (orientation: landscape) {
+      .jss36 {
+        min-height: 48px;
+      }
+    }
+
+    @media (min-width:600px) {
+      .jss36 {
+        min-height: 64px;
+      }
+    }
+
+    .jss37 {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    @media (min-width:600px) {
+      .jss37 {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+  </style>
+  <style data-jss="" data-meta="MuiTypography">
+    .jss65 {
+      margin: 0;
+      display: block;
+    }
+
+    .jss66 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 7rem;
+      font-weight: 300;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.14286em;
+      margin-left: -.04em;
+      letter-spacing: -.04em;
+    }
+
+    .jss67 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 3.5rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.30357em;
+      margin-left: -.02em;
+      letter-spacing: -.02em;
+    }
+
+    .jss68 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 2.8125rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.06667em;
+      margin-left: -.02em;
+    }
+
+    .jss69 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 2.125rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.20588em;
+    }
+
+    .jss70 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.35417em;
+    }
+
+    .jss71 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 1.3125rem;
+      font-weight: 500;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.16667em;
+    }
+
+    .jss72 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 1rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.5em;
+    }
+
+    .jss73 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.71429em;
+    }
+
+    .jss74 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.875rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.46429em;
+    }
+
+    .jss75 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 0.75rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.375em;
+    }
+
+    .jss76 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .jss77 {
+      text-align: left;
+    }
+
+    .jss78 {
+      text-align: center;
+    }
+
+    .jss79 {
+      text-align: right;
+    }
+
+    .jss80 {
+      text-align: justify;
+    }
+
+    .jss81 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .jss82 {
+      margin-bottom: 0.35em;
+    }
+
+    .jss83 {
+      margin-bottom: 16px;
+    }
+
+    .jss84 {
+      color: inherit;
+    }
+
+    .jss85 {
+      color: #3f51b5;
+    }
+
+    .jss86 {
+      color: #f50057;
+    }
+
+    .jss87 {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .jss88 {
+      color: #f44336;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiIconButton">
+    .jss96 {
+      flex: 0 0 auto;
+      width: 48px;
+      color: rgba(0, 0, 0, 0.54);
+      height: 48px;
+      padding: 0;
+      font-size: 1.5rem;
+      text-align: center;
+      transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      border-radius: 50%;
+    }
+
+    .jss96:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .jss96.jss100 {
+      color: rgba(0, 0, 0, 0.26);
+    }
+
+    @media (hover: none) {
+      .jss96:hover {
+        background-color: transparent;
+      }
+    }
+
+    .jss96:hover.jss100 {
+      background-color: transparent;
+    }
+
+    .jss97 {
+      color: inherit;
+    }
+
+    .jss98 {
+      color: #3f51b5;
+    }
+
+    .jss98:hover {
+      background-color: rgba(63, 81, 181, 0.08);
+    }
+
+    @media (hover: none) {
+      .jss98:hover {
+        background-color: transparent;
+      }
+    }
+
+    .jss99 {
+      color: #f50057;
+    }
+
+    .jss99:hover {
+      background-color: rgba(245, 0, 87, 0.08);
+    }
+
+    @media (hover: none) {
+      .jss99:hover {
+        background-color: transparent;
+      }
+    }
+
+    .jss101 {
+      width: 100%;
+      display: flex;
+      align-items: inherit;
+      justify-content: inherit;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiSvgIcon">
+    .jss102 {
+      fill: currentColor;
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      font-size: 24px;
+      transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .jss103 {
+      color: #3f51b5;
+    }
+
+    .jss104 {
+      color: #f50057;
+    }
+
+    .jss105 {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .jss106 {
+      color: #f44336;
+    }
+
+    .jss107 {
+      color: rgba(0, 0, 0, 0.26);
+    }
+  </style>
+  <style data-jss="" data-meta="MuiModal">
+    .jss110 {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1300;
+      position: fixed;
+    }
+
+    .jss111 {
+      visibility: hidden;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiPopover">
+    .jss109 {
+      outline: none;
+      position: absolute;
+      min-width: 16px;
+      max-width: calc(100% - 32px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      min-height: 16px;
+      max-height: calc(100% - 32px);
+    }
+  </style>
+  <style data-jss="" data-meta="MuiMenu">
+    .jss108 {
+      max-height: calc(100% - 96px);
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiTable">
+    .jss219 {
+      width: 100%;
+      display: table;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiTableBody">
+    .jss234 {
+      display: table-row-group;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiTableCell">
+    .jss226 {
+      display: table-cell;
+      padding: 4px 56px 4px 24px;
+      text-align: left;
+      border-bottom: 1px solid rgba(224, 224, 224, 1);
+      vertical-align: inherit;
+    }
+
+    .jss226:last-child {
+      padding-right: 24px;
+    }
+
+    .jss227 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .jss228 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.8125rem;
+      font-weight: 400;
+    }
+
+    .jss229 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 0.75rem;
+      border-bottom: 0;
+    }
+
+    .jss230 {
+      text-align: right;
+      flex-direction: row-reverse;
+    }
+
+    .jss231 {
+      padding-right: 24px;
+    }
+
+    .jss232 {
+      padding: 0 12px;
+    }
+
+    .jss232:last-child {
+      padding-right: 12px;
+    }
+
+    .jss233 {
+      padding: 0;
+    }
+
+    .jss233:last-child {
+      padding: 0;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiTableHead">
+    .jss220 {
+      display: table-header-group;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiTableRow">
+    .jss221 {
+      color: inherit;
+      height: 48px;
+      display: table-row;
+      outline: none;
+      vertical-align: middle;
+    }
+
+    .jss221.jss222 {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    .jss221.jss223:hover {
+      background-color: rgba(0, 0, 0, 0.07);
+    }
+
+    .jss224 {
+      height: 56px;
+    }
+
+    .jss225 {
+      height: 56px;
+    }
+  </style>
+  <style data-jss="" data-meta="MuiDialog">
+    .jss113 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .jss114 {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .jss115 {
+      margin: 48px;
+      display: flex;
+      outline: none;
+      position: relative;
+      overflow-y: auto;
+      flex-direction: column;
+    }
+
+    .jss116 {
+      flex: 0 1 auto;
+      max-height: calc(100% - 96px);
+    }
+
+    .jss117 {
+      margin: 48px auto;
+    }
+
+    .jss118 {
+      max-width: 360px;
+    }
+
+    @media (max-width:455.95px) {
+      .jss118.jss117 {
+        margin: 48px;
+      }
+    }
+
+    .jss119 {
+      max-width: 600px;
+    }
+
+    @media (max-width:695.95px) {
+      .jss119.jss117 {
+        margin: 48px;
+      }
+    }
+
+    .jss120 {
+      max-width: 960px;
+    }
+
+    @media (max-width:1055.95px) {
+      .jss120.jss117 {
+        margin: 48px;
+      }
+    }
+
+    .jss121 {
+      width: 100%;
+    }
+
+    .jss122 {
+      width: 100%;
+      margin: 0;
+      height: 100%;
+      max-width: 100%;
+      max-height: none;
+      border-radius: 0;
+    }
+  </style>
 </head>
 
-<body>
-  <div id="home" class="header">
-    <div class="header-top">
-      <nav class="navbar navbar-default">
-        <div>
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-              <span class="sr-only">切换导航</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-
-          <div class="collapse navbar-collapse navbar-right" id="navbar">
-            <div class="top-nav">
-
-              <a href="http://eosleo.io/" class="hover-effect scroll">
-                <span>
-                  <span>神影游戏</span>
-                  <span>神影游戏</span>
-                  <span></span>
-                </span>
-              </a>
-
-              <a href="http://eosleo.io/#fair" class="hover-effect scroll">
-                <span>
-                  <span>验证安全</span>
-                  <span>验证安全</span>
-                  <span></span>
-                </span>
-              </a>
-
-              <a href="http://eosleo.io/#rule" class="hover-effect scroll">
-                <span>
-                  <span>玩法规则</span>
-                  <span>玩法规则</span>
-                  <span></span>
-                </span>
-              </a>
-              <a href="http://eosleo.io/#game" class="hover-effect scroll">
-                <span>
-                  <span>游戏中心</span>
-                  <span>游戏中心</span>
-                  <span></span>
-                </span>
-              </a>
-              <a href="https://github.com/eosioshadows/eos-shadows" target="_blank" class="hover-effect scroll">
-                <span>
-                  <span>开源代码</span>
-                  <span>开源代码</span>
-                  <span></span>
-                </span>
-              </a>
-              <a href="http://eosleo.io/#aboutus" class="hover-effect scroll">
-                <span>
-                  <span>关于我们</span>
-                  <span>关于我们</span>
-                  <span></span>
-                </span>
-              </a>
-
-            </div>
-          </div>
-
-        </div>
-      </nav>
-    </div>
-    <div class="clearfix"></div>
-    <div class="banner-w3-info">
-      <input type="hidden" class="referrer">
-      <div class="logo">
-        <span class="white-text">新游戏倒计时</span><br><span data-letters-l="Spr" data-letters-r="int" class="clock link link-line">0
-          DAYS 00:00:00</span>
-      </div>
-      <p class="notice"><span>神影致力于打造基于EOS的游戏平台，你在这里既是玩家也是我们的合作人</span><br>让结局不留遗憾，让过程更加完美</p>
-      <div class="center-block">
-        <div class="col-md-6">
-          <span class="buy-price"></span>
-          <div class="eos-buy">
-            <input type="text" class="buy-amount" aria-label="买入数量" maxlength="10">
-            <span class="input-group-addon get-share">.00</span>
-          </div>
-          <div class="more">
-            <a class="btn buy-share popover-danger" data-toggle="popover">
-              购买区块链KEY<span class="glyphicon glyphicon-piggy-bank"></span>
-            </a>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <span class="sell-price"></span>
-          <div class="eos-sell">
-            <input type="text" class="sell-amount" aria-label="卖出数量" maxlength="10">
-            <span class="input-group-addon get-eos">.00</span>
-          </div>
-          <div class="more">
-            <a class="btn sell-share popover-danger" data-toggle="popover">
-              出售区块链KEY<span class="glyphicon glyphicon-log-out"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="eos-account">
-        <span><a href="javascript:" class="scatter" data-toggle="popover">没有Scatter？</a></span>
-        <span><a href="javascript:" class="binding text-left" data-placeholder="">绑定账号</a></span>
-        <span class="account"></span>
-        <span class="balance"></span>
-        <a href="javascript:" class="sign-out hidden">注销</a>
-      </div>
-      <div class="eos-referrer"></div>
-      <div class="col-md-12 statistics-info">
-        <div class="col-md-4 col-md-offset-2">
-          <div class="investor-info">
-            <div>
-              <div class="col-xs-6">
-                <h6>我的总投：</h6>
+<body style="">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div>
+      <div>
+        <div style="flex-grow: 1;">
+          <div>
+            <header class="jss9 jss15 jss1 jss2 mui-fixed">
+              <div class="jss36 jss37">
+                <a href="https://eosbutton.io/">
+                  <img src="./EOS Button_files/eos-button-icon.27c8f8ae.png" style="height: 5vh;">
+                </a>
+                <div style="width: 10px;"></div>
+                <a tabindex="0" class="jss62 jss38 jss40 jss43" role="button" href="https://eosbutton.io/" style="color: rgb(117, 117, 117); text-transform: none;">
+                  <span class="jss39">
+                    <h2 class="jss65 jss71" style="flex: 1 1 0%; color: rgb(117, 117, 117);">EOS Button</h2>
+                  </span>
+                  <span class="jss89"></span>
+                </a>
+                <div style="flex: 1 1 0%;"></div>
+                <button tabindex="0" class="jss62 jss96" type="button">
+                  <span class="jss101">
+                    <svg class="jss102" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                      <g>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                      </g>
+                    </svg>
+                  </span>
+                  <span class="jss89"></span>
+                </button>
               </div>
-              <div class="col-xs-6  text-right"><span class="player-eos">0.00 EOS</span></div>
-            </div>
-            <div>
-              <div class="col-xs-6">
-                <h6>我的KEY：</h6>
+            </header>
+          </div>
+          <div style="height: 65px;"></div>
+          <div style="height: 20px;"></div>
+        </div>
+      </div>
+      <div>
+        <div class="jss123 jss143">
+          <div class="jss124 jss162 jss195">
+            <div class="jss9 jss13 jss10" style="padding: 30px;">
+              <div style="font-size: 100%; color: rgb(158, 158, 158);">Round undefined</div>
+              <br>
+              <div style="overflow: auto;">
+                <table class="jss219" style="font-size: 200%;">
+                  <thead class="jss220">
+                    <tr class="jss221 jss224">
+                      <th class="jss226 jss227" scope="col"></th>
+                      <th class="jss226 jss227" scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="jss234">
+                    <tr class="jss221">
+                      <td class="jss226 jss228" style="font-size: 50%; color: rgb(117, 117, 117);">Pot</td>
+                      <td class="jss226 jss228" style="font-size: 80%; color: rgb(117, 117, 117);">...</td>
+                    </tr>
+                    <tr class="jss221">
+                      <td class="jss226 jss228" style="font-size: 50%; color: rgb(117, 117, 117);">Final Prize</td>
+                      <td class="jss226 jss228" style="font-size: 80%; color: rgb(117, 117, 117);">...</td>
+                    </tr>
+                    <tr class="jss221">
+                      <td class="jss226 jss228" style="font-size: 50%; color: rgb(117, 117, 117);">Time lasted</td>
+                      <td class="jss226 jss228" style="font-size: 80%; color: rgb(117, 117, 117);">...</td>
+                    </tr>
+                    <tr class="jss221">
+                      <td class="jss226 jss228" style="font-size: 50%; color: rgb(117, 117, 117);">Total shares</td>
+                      <td class="jss226 jss228" style="font-size: 80%; color: rgb(117, 117, 117);">...</td>
+                    </tr>
+                    <tr class="jss221">
+                      <td class="jss226 jss228">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                      </td>
+                      <td class="jss226 jss228"></td>
+                    </tr>
+                    <tr class="jss221">
+                      <td class="jss226 jss228" style="font-size: 50%; color: rgb(117, 117, 117);">Your shares</td>
+                      <td class="jss226 jss228" style="font-size: 80%; color: rgb(117, 117, 117);">...</td>
+                    </tr>
+                    <tr class="jss221">
+                      <td class="jss226 jss228" style="font-size: 50%; color: rgb(117, 117, 117);">Your rewards (est.)</td>
+                      <td class="jss226 jss228" style="font-size: 80%; color: rgb(117, 117, 117);">...</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="col-xs-6  text-right"><span class="player-key">0.00 KEY</span></div>
+              <div style="color: rgb(158, 158, 158); font-size: 80%; margin: 5% 10%;">You will receive your rewards after the start of next round</div>
             </div>
-            <div>
-              <div class="col-xs-6">
-                <h6>持KEY权重：</h6>
+            <br>
+            <br>
+          </div>
+          <div class="jss124 jss162 jss196">
+            <div style="text-align: center; color: rgb(117, 117, 117);">
+              <div>
+                <div style="font-size: 400%;">0</div>
+                <br>
+                <div>(0.1900 EBT / Share)</div>
+                <br>
               </div>
-              <div class="col-xs-6  text-right"><span class="player-weight">0</span></div>
-            </div>
-            <div>
-              <div class="col-xs-6">
-                <h6>我的利润：</h6>
-              </div>
-              <div class="col-xs-6  text-right"><span class="player-profit">0.00 EOS</span> <a href="javascript:" class="btn btn-info btn-xs withdraw">提</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-md-offset-0">
-          <div class="investor-info">
-            <div class="investor-item">
-              <div class="col-xs-6">
-                <h6>资金储备：</h6>
-              </div>
-              <div class="col-xs-6  text-right"><span class="game-eos">0.00 EOS</span></div>
-            </div>
-            <div class="investor-item">
-              <div class="col-xs-6">
-                <h6>权重奖池：</h6>
-              </div>
-              <div class="col-xs-6  text-right"><span class="game-weight">0.00 EOS</span></div>
-            </div>
-            <div class="investor-item">
-              <div class="col-xs-6">
-                <h6>总售KEY：</h6>
-              </div>
-              <div class="col-xs-6  text-right"><span class="game-key">0.00 KEY</span></div>
-            </div>
-            <div class="investor-item">
-              <div class="col-xs-6">
-                <h6>总计分红：</h6>
-              </div>
-              <div class="col-xs-6  text-right"><span class="game-profit">0.00 EOS</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div id="dialog-success" class="modal modal-alert modal-success fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <svg width="90" height="90" viewBox="0 0 1792 1792" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M1412 734q0-28-18-46l-91-90q-19-19-45-19t-45 19l-408 407-226-226q-19-19-45-19t-45 19l-91 90q-18 18-18 46 0 27 18 45l362 362q19 19 45 19 27 0 46-19l543-543q18-18 18-45zm252 162q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path></svg>
-          </div>
-          <div class="modal-title"></div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">确认</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="dialog-danger" class="modal modal-alert modal-danger fade" aria-hidden="true" style="display: none;">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <svg width="90" height="90" viewBox="0 0 1792 1792" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M1277 1122q0-26-19-45l-181-181 181-181q19-19 19-45 0-27-19-46l-90-90q-19-19-46-19-26 0-45 19l-181 181-181-181q-19-19-45-19-27 0-46 19l-90 90q-19 19-19 46 0 26 19 45l181 181-181 181q-19 19-19 45 0 27 19 46l90 90q19 19 46 19 26 0 45-19l181-181 181 181q19 19 45 19 27 0 46-19l90-90q19-19 19-46zm387-226q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path></svg>
-          </div>
-          <div class="modal-title"></div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">确认</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="dialog-warning" class="modal modal-alert modal-warning fade" aria-hidden="true" style="display: none;">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <svg width="90" height="90" viewBox="0 0 1792 1792" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M1024 1375v-190q0-14-9.5-23.5t-22.5-9.5h-192q-13 0-22.5 9.5t-9.5 23.5v190q0 14 9.5 23.5t22.5 9.5h192q13 0 22.5-9.5t9.5-23.5zm-2-374l18-459q0-12-10-19-13-11-24-11h-220q-11 0-24 11-10 7-10 21l17 457q0 10 10 16.5t24 6.5h185q14 0 23.5-6.5t10.5-16.5zm-14-934l768 1408q35 63-2 126-17 29-46.5 46t-63.5 17h-1536q-34 0-63.5-17t-46.5-46q-37-63-2-126l768-1408q17-31 47-49t65-18 65 18 47 49z"></path></svg>
-          </div>
-          <div class="modal-title"></div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-warning" data-dismiss="modal">确认</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="dialog-info" class="modal modal-alert modal-info fade" aria-hidden="true" style="display: none;">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <svg width="90" height="90" viewBox="0 0 1792 1792" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M1152 1376v-160q0-14-9-23t-23-9h-96v-512q0-14-9-23t-23-9h-320q-14 0-23 9t-9 23v160q0 14 9 23t23 9h96v320h-96q-14 0-23 9t-9 23v160q0 14 9 23t23 9h448q14 0 23-9t9-23zm-128-896v-160q0-14-9-23t-23-9h-192q-14 0-23 9t-9 23v160q0 14 9 23t23 9h192q14 0 23-9t9-23zm640 416q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"></path></svg>
-          </div>
-          <div class="modal-title"></div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal">确认</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="fair" class="banner-bottom fair">
-    <div class="container">
-      <div class="inner-w3">
-        <h3 class="title">验证安全<span></span></h3>
-      </div>
-      <div class="adt_grids">
-        <div class="col-md-12 about_left wow flipInY" data-wow-duration="1.5s" data-wow-delay="0s">
-          <h2 class="tittle text-center">如何保证EOS智能合约资金安全？</h2>
-          <h4>方法一：多重签名智能合约</h4>
-          <p>EOS权限体系通过权重（Weight）和阈值（Threshold）来限制合约账户，可以实现多个人共同管理一个账户资金，假设智能合约账户有5个人的公钥，每个公钥的权重为1，权限的总阈值为3，这就表示必须要这5个人中至少3个人签名，才可以转移资金和修改合约代码。</p>
-          <h4>方法二：移交智能合约权限</h4>
-          <p>这种方式也比较安全，我们可以修改合约权限为eosio.prods账户，直接将智能合约权限移交给官方21个节点来控制，未来如果需要转移资金或修改合约，则需要申请节点仲裁。</p>
-          <h4>方法三：设置合约黑洞公钥</h4>
-          <p>这种方式是最接近区块链定义的，我们可以将智能合约权限修改为黑洞公钥，官方在超级节点竞选时临时用过的这个公钥：EOS1111111111111111111111111111111114T1Anm，它的公钥是0值加检验数据生成的，任何人都不知道它的私钥，未来合约也不可能再被转移资金或修改。</p>
-          <h2 class="tittle text-center">区块链智能合约</h2>
-          <p>经过研发团队讨论之后，我们决定采用最后一种方式（黑洞公钥），因为这种是最接近区块链原始定义的方式：公正公平、无法撰改，待区块链项目稳定运行之后，我们就采取合约黑洞公钥方式。</p>
-          <p>合约账号：<a href="https://eospark.com/MainNet/Account/eosioshadows" target="_blank">eosioshadows</a></p>
-          <p>合约地址：<a href="https://eospark.com/MainNet/contract/eosioshadows" target="_blank">https://eospark.com/...eosioshadows</a></p>
-          <p>开源代码：<a href="https://github.com/eosioshadows/eos-shadows" target="_blank">https://github.com/...eos-shadows</a></p>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-  </div>
-
-
-  <div id="rule" class="features">
-    <div class="container">
-      <div class="inner-w3 w3l">
-        <h3 class="title two">游戏规则<span class="two"></span></h3>
-      </div>
-      <div class="col-md-5 features-left">
-        <div class="trainer-gent-inner">
-          <div class="features-text">
-            <div id="game-rate"><img src="./assets/chart.png" width="100%"></div>
-            <h4>奖励分配</h4>
-            <p><strong>资金储备：</strong>每KEY销售的50%进入资金储备用Bancor对KEY定价。</p>
-            <p><strong>推荐奖励：</strong>每KEY销售的5%贡献给2个上级推广人。</p>
-            <p><strong>权重奖池：</strong>每KEY销售的15%累计权重奖池。</p>
-            <p><strong>研发消耗：</strong>每KEY销售的10%用作团队研发基础资金及EOS内存消耗。</p>
-            <p><strong>助力资金：</strong>每KEY销售的20%直接进入资金储备快速推动股价上涨。</p>
-            <h4>特别提示</h4>
-            <p><strong>固定数量：</strong>100万KEY，永不增发。</p>
-            <p><strong>购买限额：</strong>购买KEY的EOS数量必须大于等于1EOS，且小于等于500EOS。</p>
-            <p><strong>提取限额：</strong>提取利润必须至少大于等于0.1EOS。</p>
-            <p><strong>系统底仓：</strong>初始底仓价值1万EOS的KEY，用作Bancor定价，不能交易。</p>
-            <p><strong>推荐账号：</strong>如果玩家不输入推荐人账号或推荐人不存在，则默认推荐人为研发团队账号，请不要让我们赚这笔钱。</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-7 features-right">
-        <ul class="workout-exercises">
-          <li>
-            <h4>Bancor算法销售</h4>
-            <p>我们的KEY与EOS的RAM一样，使用Bancor算法销售和回收KEY，按当前资金储备中EOS数量定价，越早购买的KEY越便宜，购买KEY的玩家越多，价格越呈指数级增长，也可以随时卖出KEY。</p>
-          </li>
-          <li>
-            <h4>倒计时发布新游戏</h4>
-            <p>新游戏分红是以买入KEY的形式回馈给持KEY玩家，无论当时KEY价多少，新游戏合约里50%利润自动转入当前合约买进KEY。团队不保证每个新游戏绝对盈利，请根据风险理性投资。</p>
-          </li>
-          <li>
-            <h4>多级推荐奖励</h4>
-            <p>任何一位玩家购买KEY，都会向上2级贡献总资金5%的利润，然后再按50%、50%的比例划分给2个上级。真正意义上实现任何人都可以作为顶级推荐人享受下级的红利，每个人都有机会站在金字塔顶端。</p>
-          </li>
-          <li>
-            <h4>权重奖池</h4>
-            <p>玩家持KEY数量大于10000，持KEY权重大于等于7时，再买入任意数量的KEY即可获得权重奖池的10%作为奖励。获得权重奖励后权重归零，秉承先买先得原则，分完为止。注意：不断买入KEY权重会减少，卖出任意数量KEY权重会归零。</p>
-          </li>
-          <li>
-            <h4>助力资金</h4>
-            <p>每KEY销售的20%直接进入Bancor资金储备池中，推动KEY的卖出价格快速上涨，因为是Bancor算法，股价会上涨的更快。</p>
-          </li>
-
-        </ul>
-      </div>
-      <div class="clearfix"></div>
-      <script src="./src/js/main.js"></script>
-    </div>
-  </div>
-
-
-  <!-- <div id="game" class="gallery">
-    <div class="container">
-      <div class="inner-w3">
-        <h3 class="title"> 游戏中心 <span></span></h3>
-      </div>
-      <div class="gallery_gds">
-        <ul class="simplefilter wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
-          <li class="active" data-filter="all">All</li>
-          <li data-filter="1">棋牌</li>
-        </ul>
-
-        <div class="filtr-container wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0.1s">
-          <div class=" col-md-4 filtr-item" data-category="1, 5" data-sort="Busy streets">
-            <a href="javascript:" class="b-link-stripe b-animate-go  swipebox">
-              <div class="item item-type-double">
-                <div class="item-hover">
-                  <div class="item-info">
-                    <div class="date">待开发</div>
-                    <div class="line"></div>
-                    <div class="headline">敬请期待</div>
-                    <div class="line"></div>
+              <div style="display: inline-block;">
+                <div style="width: 430px; height: 430px; position: relative;">
+                  <div style="width: 430px; height: 430px; position: absolute; top: 0px; left: 0px;">
+                    <svg class="CircularProgressbar " viewBox="0 0 100 100">
+                      <path class="CircularProgressbar-trail" d="
+      M 50,50
+      m 0,-48
+      a 48,48 0 1 1 0,96
+      a 48,48 0 1 1 0,-96
+    " stroke-width="4" fill-opacity="0"></path>
+                      <path class="CircularProgressbar-path" d="
+      M 50,50
+      m 0,-48
+      a 48,48 0 1 1 0,96
+      a 48,48 0 1 1 0,-96
+    " stroke-width="4" fill-opacity="0" style="stroke: rgb(96, 125, 139); stroke-dasharray: 301.593px, 301.593px; stroke-dashoffset: 301.593px;"></path>
+                    </svg>
                   </div>
-                  <div class="mask"></div>
-                </div>
-                <div class="item-img"><img src="./神影游戏 - EOS生态游戏投资中心_files/game1.jpg"></div>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-4 filtr-item" data-category="2, 5" data-sort="Luminous night">
-            <a href="javascript:" class="b-link-stripe b-animate-go  swipebox">
-              <div class="item item-type-double">
-                <div class="item-hover">
-                  <div class="item-info">
-                    <div class="date">待开发</div>
-                    <div class="line"></div>
-                    <div class="headline">敬请期待</div>
-                    <div class="line"></div>
+                  <div style="position: absolute; top: 14px; left: 14px;">
+                    <div class="main_button_container_button">
+                      <div class="main_button_hole">
+                        <div class="main_button_button">
+                          <svg class="main_button_eos_icon" viewBox="0 0 100 100">
+                            <polygon points="50 0, 74 31, 84 80, 50 100, 16 80, 26 31"></polygon>
+                          </svg>
+                          <svg class="main_button_lighter_eos_icon" viewBox="0 0 100 100">
+                            <polygon points="50 0, 74 31, 84 80, 50 100, 16 80, 26 31"></polygon>
+                          </svg>
+                          <svg class="main_button_darker_eos_icon" viewBox="0 0 100 100">
+                            <polygon points="50 0, 74 31, 84 80, 50 100, 16 80, 26 31"></polygon>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="mask"></div>
                 </div>
-                <div class="item-img"><img src="./神影游戏 - EOS生态游戏投资中心_files/game2.jpg"></div>
               </div>
-            </a>
-
-          </div>
-          <div class="col-md-4 filtr-item" data-category="1, 4" data-sort="City wonders">
-            <a href="javascript:" class="b-link-stripe b-animate-go  swipebox">
-              <div class="item item-type-double">
-                <div class="item-hover">
-                  <div class="item-info">
-                    <div class="date">待开发</div>
-                    <div class="line"></div>
-                    <div class="headline">敬请期待</div>
-                    <div class="line"></div>
-                  </div>
-                  <div class="mask"></div>
+              <br>
+              <div style="height: 30px;"></div>
+              <div>
+                <span class="react-numeric-input" style="position: relative; display: inline-block; font-size: 64px;">
+                  <input type="text" size="6" value="1001.0" pattern=".*" style="padding-right: 3.4ex; box-sizing: border-box; font-size: inherit; color: rgb(97, 97, 97); font-family: roboto; border: 1px solid rgb(204, 204, 204); border-radius: 2px; padding-left: 3.4ex; display: block; -webkit-appearance: none; line-height: normal; text-align: center;">
+                  <b style="position: absolute; right: 2px; width: 3.3ex; border-color: rgba(0, 0, 0, 0.1); border-style: solid; text-align: center; cursor: default; transition: all 0.1s ease 0s; background: rgba(0, 0, 0, 0.1); box-shadow: none; top: 2px; bottom: 2px; border-radius: 2px; border-width: 1px;">
+                    <i style="position: absolute; top: 50%; left: 50%; width: 10px; height: 2px; background: rgba(0, 0, 0, 0.7); margin: -1px 0px 0px -5px;"></i>
+                    <i style="position: absolute; top: 50%; left: 50%; width: 2px; height: 10px; background: rgba(0, 0, 0, 0.7); margin: -5px 0px 0px -1px;"></i>
+                  </b>
+                  <b style="position: absolute; right: auto; width: 3.3ex; border-color: rgba(0, 0, 0, 0.1); border-style: solid; text-align: center; cursor: default; transition: all 0.1s ease 0s; background: rgba(0, 0, 0, 0.1); box-shadow: none; top: 2px; bottom: 2px; border-radius: 2px; border-width: 1px; left: 2px;">
+                    <i style="position: absolute; top: 50%; left: 50%; width: 10px; height: 2px; background: rgba(0, 0, 0, 0.7); margin: -1px 0px 0px -5px;"></i>
+                  </b>
+                </span>
+                <div>EBT</div>
+                <div style="height: 10px;"></div>
+                <span style="font-size: 180%;">5268.4211</span>
+                <span style="font-size: 120%;"> Shares</span>
+                <span style="font-size: 80%;">(est.)</span>
+                <div>
+                  <br>
+                  <br>
                 </div>
-                <div class="item-img"><img src="./神影游戏 - EOS生态游戏投资中心_files/game3.jpg"></div>
               </div>
-            </a>
-
+              <br>
+              <br>
+              <br>
+            </div>
           </div>
-
-          <div class="clearfix"> </div>
+          <div class="jss124 jss162 jss195"></div>
         </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div id="aboutus" class="reviews">
-    <div class="container">
-      <div class="inner-w3">
-        <h3 class="title">关于我们<span></span></h3>
-      </div>
-      <div class="staff-section">
-        <div class="col-md-3 staff-grid  animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
-          <div class="view fifth-effect">
-            <a href="http://eosleo.io/index.html" title="Full Image"><img src="./神影游戏 - EOS生态游戏投资中心_files/wesley.png"></a>
-            <div class="mask"></div>
-          </div>
-          <h4>Wesley</h4>
-          <p>北京理工大学 计算机科学与技术</p>
-        </div>
-        <div class="col-md-3 staff-grid animated wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="500ms">
-          <div class="view fifth-effect">
-            <a href="http://eosleo.io/index.html" title="Full Image"><img src="./神影游戏 - EOS生态游戏投资中心_files/vigoss.png"></a>
-            <div class="mask"></div>
-          </div>
-          <h4>Vigoss</h4>
-          <p>北京理工大学 计算机科学与技术</p>
-        </div>
-        <div class="col-md-3 staff-grid animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-          <div class="view fifth-effect">
-            <a href="http://eosleo.io/index.html" title="Full Image"><img src="./神影游戏 - EOS生态游戏投资中心_files/lucass.png"></a>
-            <div class="mask"></div>
-          </div>
-          <h4>Lucass</h4>
-          <p>北京理工大学 计算机科学与技术</p>
-        </div>
-        <div class="col-md-3 staff-grid animated wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-          <div class="view fifth-effect">
-            <a href="http://eosleo.io/index.html" title="Full Image"><img src="./神影游戏 - EOS生态游戏投资中心_files/bruce.png"></a>
-            <div class="mask"></div>
-          </div>
-          <h4>Bruce</h4>
-          <p>武汉大学 计算机通信与工程</p>
-        </div>
-      </div>
-      <div class="staff-section">
-        <div class="col-md-3 col-lg-offset-3 staff-grid animated wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="500ms">
-          <div class="view fifth-effect">
-            <a href="http://eosleo.io/index.html" title="Full Image"><img src="./神影游戏 - EOS生态游戏投资中心_files/angel.png"></a>
-            <div class="mask"></div>
-          </div>
-          <h4>Angel</h4>
-          <p>大连外国语学院 法学</p>
-        </div>
-        <div class="col-md-3 staff-grid  animated wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
-          <div class="view fifth-effect">
-            <a href="http://eosleo.io/index.html" title="Full Image"><img src="./神影游戏 - EOS生态游戏投资中心_files/ava.png"></a>
-            <div class="mask"></div>
-          </div>
-          <h4>Ava</h4>
-          <p>河北传媒大学 艺术与设计</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
-  <div class="footer wow fadeIn animated animated" data-wow-delay="0.1s" data-wow-duration="0.2s">
-    <div class="container">
-      <div class="copy_right text-center">
-        <p>请加入我们的官方电报群沟通交流</p>
-        <p><img src="null" width="100"></p>
-        <p>COPYRIGHT © 2018. THE TELEEMPIRE INC. PHILIPPINES ALL RIGHTS RESERVED.</p>
       </div>
     </div>
   </div>
-  <a href="http://eosleo.io/#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;">
-    </span></a>
-  <script src="./src/js/jquery.min.js"></script>
+  <script type="text/javascript" src="./src/js/main.js"></script>
+  <aside class="butter-toast-tray butter-toast-global top-right">
+    <div class="wrapper"></div>
+  </aside>
+  <aside class="butter-toast-tray butter-toast-local top-center">
+    <div class="wrapper"></div>
+  </aside>
+  <div id="cli_dialog_div"></div>
 </body>
 
 </html>
